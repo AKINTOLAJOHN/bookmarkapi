@@ -26,6 +26,10 @@ model User {
 
   lastName String?
 
+  bookmarks bookmark[]
+
+  @@map("users")
+
 }
 
 model bookmark {
@@ -41,6 +45,12 @@ model bookmark {
   description String?
 
   link String 
+
+  userId Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("bookmarks")
 
 
 }
